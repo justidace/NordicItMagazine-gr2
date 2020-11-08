@@ -1,6 +1,6 @@
 <?php
      
-    
+    var_dump($_REQUEST);
     switch ($_REQUEST['action']){
         case 'catalog':
             header("Access-Control-Allow-Origin: *");
@@ -14,6 +14,11 @@
         case 'basket':
            include_once('./basket.php');
         break;
+        case 'reg':
+            include_once('./user.php');
+            $user = new User;
+            $user -> save(false);
+        break;    
     }
     
 

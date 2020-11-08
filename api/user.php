@@ -66,22 +66,32 @@ class User extends db{
             
         }else echo $sql; 
     }
-    function save($connect){
-        $log = $this->getLogin();
-        $pass = $this->getPassword();
-        $mail = $this->getMail();
-        
-        $sql = "INSERT INTO `users`  (
-                    `login`, `password`, `name` , `mail` , `role` , `accept`
-                ) 
-                VALUES ( 
-                    '$log', '$pass', '' , '$mail' , 'user' , '0'
-                )";
+    function save(){
+        $linkFromParent = parent::extendConnect('localhost');
+        $login = $_REQUEST["login"];
+        $pass = $_REQUEST["pass"];
+        $name = $_REQUEST["name"];
+        $email = $_REQUEST["email"];
 
+        $sql = "INSERT INTO `user`  (
+            `NAME`, `LOGIN`, `EMAIL` , `PASSWORD`
+        ) 
+        VALUES ( 
+            '$name', '$login', '$email' , '$pass' 
+        )";
+
+        $result = mysqli_query($linkFromParent, $sql); 
+        if($result){
+            echo 'Запрос успешно сработал';
+        } else echo $sql;   
+
+        /*
+        
         $result = mysqli_query($connect, $sql); 
         if($result){
              echo 'Запрос успешно сработал';
-        } else echo $sql;           
+        } else echo $sql;    
+        */       
     }
     function session_start(){
         /*
@@ -105,7 +115,7 @@ class User extends db{
             $_SESSION['login'] = $dataUserCookie["login"];
        }else $_SESSION['login'] = '';
     }
-    //Конструктор
+    /*
     function __construct($action = '') {
         $this -> setLogin();
         $this -> setPassword();
@@ -122,6 +132,7 @@ class User extends db{
             
         }
     }
+    */
 }
 
 

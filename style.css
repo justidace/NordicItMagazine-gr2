@@ -1,0 +1,20 @@
+.popupp-container{
+    opacity: 0;
+    visibility: hidden;
+}
+.popupp-container.active{
+    opacity: 1;
+    visibility: visible;
+}
+.popupp-container form{
+    display: none;
+}
+.popupp-container form.active{
+    display: block;
+}
+.overlay{
+    display: none;
+}
+.overlay.active{
+    display: block;
+}
