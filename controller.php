@@ -1,20 +1,21 @@
 <?php
-
 switch($_SERVER["REDIRECT_URL"]){
     case NULL:
-        include "./modules/main/index.php";
-    break;    
+        include "./modules/main/template.php";
+    break;  
     case '/catalog':
         echo "Каталог магазина";
+        include "./modules/catalog/template.php";
     break;
     case '/basket':
         echo "Корзина магазина";
     break;
     case '/card':
         echo "Товар магазина";
-        $result = explode("=", $_SERVER["REDIRECT_QUERY_STRING"]);
-        if($result[0]){
-            echo ' товар'.$result[0];
+        $idGood = $_SERVER["REDIRECT_QUERY_STRING"];
+        if($idGood){
+            //echo ' товар'.$idGood;
+            include "./modules/card/template.php";
         }else echo 'Идентификатор товара не указан';
     break;
     case '/chat':
